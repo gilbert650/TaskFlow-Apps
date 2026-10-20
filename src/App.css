@@ -1,0 +1,512 @@
+/* --- Core Theme Colors & Variables --- */
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-accent: #21262d;
+  --text-main: #c9d1d9;
+  --text-muted: #8b949e;
+  --border-color: #30363d;
+  
+  --primary-blue: #58a6ff;
+  --primary-blue-hover: #79c0ff;
+  --success-green: #238636;
+  --success-hover: #2ea043;
+  --warning-amber: #d29922;
+  --danger-red: #da3637;
+  --danger-hover: #f85149;
+  
+  --priority-high-bg: rgba(255, 123, 114, 0.15);
+  --priority-high-txt: #ff7b72;
+  --priority-medium-bg: rgba(210, 153, 34, 0.15);
+  --priority-medium-txt: #d29922;
+  --priority-low-bg: rgba(63, 185, 80, 0.15);
+  --priority-low-txt: #56d364;
+  
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Base Resets & Transitions --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-stack);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Layout Architecture --- */
+.app-workspace {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content-area {
+  flex: 1;
+  padding: 40px 24px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.view-panelfade {
+  animation: viewFadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes viewFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Navigation Header bar --- */
+.global-navbar {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 32px;
+  height: 64px;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-text {
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: -0.3px;
+  color: #ffffff;
+}
+
+.version-tag {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background-color: var(--bg-accent);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-link-item {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-link-item:hover {
+  color: #ffffff;
+  background-color: var(--bg-accent);
+}
+
+.nav-link-item.is-link-active {
+  color: var(--primary-blue);
+  background-color: rgba(88, 166, 255, 0.1);
+  border-color: rgba(88, 166, 255, 0.2);
+  font-weight: 500;
+}
+
+.system-status {
+  font-size: 0.8rem;
+  color: #56d364;
+  background: rgba(63, 185, 80, 0.1);
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(63, 185, 80, 0.15);
+}
+
+/* --- Form Control Elements --- */
+form input[type="text"],
+.inline-row-editor {
+  flex: 1;
+  background-color: rgba(13, 17, 23, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 16px;
+  color: #ffffff;
+  font-family: var(--font-stack);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+form input[type="text"]:focus,
+.inline-row-editor:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+form select {
+  background-color: var(--bg-accent);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: var(--text-main);
+  font-family: var(--font-stack);
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+}
+
+/* --- Semantic Action Buttons --- */
+button {
+  font-family: var(--font-stack);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Primary Action / Add Task */
+form button[type="submit"] {
+  background-color: var(--success-green);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+form button[type="submit"]:hover {
+  background-color: var(--success-hover);
+}
+
+/* Navigation Dashboard Redirect */
+.view-pipeline-action-btn {
+  background-color: var(--primary-blue);
+  color: #0d1117;
+  font-weight: 600;
+  border: none;
+  margin-top: 16px;
+}
+.view-pipeline-action-btn:hover {
+  background-color: var(--primary-blue-hover);
+}
+
+/* Row Action Buttons */
+.data-row-card button {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+/* Modify / Edit Button */
+.data-row-card button:first-of-type {
+  background-color: var(--bg-accent);
+  color: var(--text-main);
+}
+.data-row-card button:first-of-type:hover:not(:disabled) {
+  border-color: var(--warning-amber);
+  color: var(--warning-amber);
+  background-color: rgba(210, 153, 34, 0.05);
+}
+.data-row-card button:first-of-type:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Save / Confirm Button */
+.data-row-card button:has(text:contains('Confirm')),
+.data-row-card button:first-of-type[title="Commit Changes"] {
+  background-color: rgba(35, 134, 54, 0.15);
+  color: #56d364;
+  border-color: rgba(63, 185, 80, 0.2);
+}
+.data-row-card button:first-of-type[title="Commit Changes"]:hover {
+  background-color: var(--success-green);
+  color: #ffffff;
+}
+
+/* Delete / Remove / Purge Buttons */
+.data-row-card button:last-of-type {
+  background-color: rgba(218, 54, 55, 0.1);
+  color: #ff7b72;
+  border-color: rgba(218, 54, 55, 0.15);
+}
+.data-row-card button:last-of-type:hover {
+  background-color: var(--danger-red);
+  color: #ffffff;
+  border-color: var(--danger-hover);
+}
+
+/* --- Metric Summary Cards --- */
+.home-dashboard-grid > div {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+  flex: 1;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.home-dashboard-grid h3 {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+
+.home-dashboard-grid p {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* --- Filter Toolbar Buttons --- */
+.toolbar button {
+  background-color: var(--bg-secondary);
+  color: var(--text-muted);
+  border-color: var(--border-color);
+}
+.toolbar button:hover {
+  color: var(--text-main);
+  background-color: var(--bg-accent);
+}
+/* Style change for danger purge action button */
+.toolbar button:last-of-type {
+  background-color: transparent;
+  color: #ff7b72;
+  border-color: rgba(218, 54, 55, 0.2);
+}
+.toolbar button:last-of-type:hover {
+  background-color: rgba(218, 54, 55, 0.15);
+}
+
+/* --- Task List Container & Row Cards --- */
+.data-table-view {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 4px 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.data-row-card {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.data-row-card:last-child {
+  border-bottom: none;
+}
+
+.data-row-card:hover {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.data-row-card.row-is-completed {
+  opacity: 0.55;
+}
+
+/* Custom Checkbox Design Styling */
+.data-row-card input[type="checkbox"] {
+  accent-color: var(--primary-blue);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Task Meta Details Label alignment */
+.task-time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Dynamic Priority Pill Badges matching explicit strings evaluated */
+.data-row-card span {
+  font-size: 0.95rem;
+}
+
+.data-row-card span:nth-of-type(2) {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* Color mappings evaluated over priority strings */
+.data-row-card span:nth-of-type(2):contains("High"),
+.data-row-card span:nth-of-type(2):has(:contains("High")),
+.data-row-card span[class*="high"] {
+  background-color: var(--priority-high-bg);
+  color: var(--priority-high-txt);
+}
+
+.data-row-card span:nth-of-type(2):contains("Medium"),
+.data-row-card span:nth-of-type(2):has(:contains("Medium")),
+.data-row-card span[class*="medium"] {
+  background-color: var(--priority-medium-bg);
+  color: var(--priority-medium-txt);
+}
+
+.data-row-card span:nth-of-type(2):contains("Low"),
+.data-row-card span:nth-of-type(2):has(:contains("Low")),
+.data-row-card span[class*="low"] {
+  background-color: var(--priority-low-bg);
+  color: var(--priority-low-txt);
+}
+
+/* --- Clean Typography Headers --- */
+h1, h2, h3, h4 {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+h1 { font-size: 1.75rem; letter-spacing: -0.5px; }
+h2 { font-size: 1.4rem; letter-spacing: -0.3px; margin-bottom: 12px; }
+
+/* --- Documentation Portal Utilities --- */
+.documentation-portal h3 {
+  font-size: 1.1rem;
+  margin: 20px 0 8px 0;
+  color: var(--primary-blue);
+}
+
+.system-profile-desc {
+  line-height: 1.6;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.diagnostics-list {
+  list-style: none;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.diagnostics-list li {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.diagnostics-list li:last-child {
+  margin-bottom: 0;
+}
+
+.diagnostics-list strong {
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+/* --- Page Layout Global Footer --- */
+footer {
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  padding: 24px 0;
+  background-color: var(--bg-secondary);
+  color: var(--text-muted);
+}
+/* --- 1. Fix Row Alignment (Spreads elements beautifully across the card) --- */
+.data-table-view {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0 16px; /* Smooth padding edge */
+  box-shadow: var(--shadow-sm);
+}
+
+.data-row-card {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between; /* Spreads layout across left and right */
+  gap: 20px !important;
+  padding: 14px 0 !important; /* Uniform row spacing */
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Forces task name or inline editor to expand and push metadata to the right */
+.data-row-card > span:first-of-type,
+.data-row-card > input[type="text"] {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+/* Container grouping priority, time, and action items on the right side */
+.data-row-card div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* --- 2. Fix Dropdown Styling (Matches input height and adds dark aesthetic) --- */
+form select {
+  background-color: var(--bg-accent) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  padding: 10px 16px !important; /* Perfect height matching with input text field */
+  color: #ffffff !important;
+  font-family: var(--font-stack);
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  height: 42px; /* Keeps element rigid alongside input field and add button */
+}
+
+form select:focus {
+  border-color: var(--primary-blue) !important;
+}
+
+
+/* --- 3. Fix Row Action Buttons (Clear backgrounds instead of invisible grey text) --- */
+.data-row-card button {
+  padding: 6px 14px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500;
+  border-radius: 4px !important;
+  border: 1px solid var(--border-color) !important;
+  background-color: var(--bg-accent) !important; /* Dark solid base fill */
+  color: var(--text-main) !important;
+  transition: all 0.15s ease;
+}
+
+/* Modify/Edit Hover State */
+.data-row-card button:first-of-type:hover:not(:disabled) {
+  border-color: var(--warning-amber) !important;
+  color: var(--warning-amber) !important;
+  background-color: rgba(210, 153, 34, 0.1) !important;
+}
+
+/* Confirm / Save Changes Active Look */
+.data-row-card button[title="Commit Changes"],
+.data-row-card button:first-of-type:not(:disabled):active {
+  background-color: var(--success-green) !important;
+  border-color: var(--success-hover) !important;
+  color: #ffffff !important;
+}
+
+/* Remove / Delete Button Vibrant Contrast Style */
+.data-row-card button:last-of-type {
+  background-color: rgba(218, 54, 55, 0.1) !important;
+  color: #ff7b72 !important;
+  border-color: rgba(218, 54, 55, 0.3) !important;
+}
+
+.data-row-card button:last-of-type:hover {
+  background-color: var(--danger-red) !important;
+  border-color: var(--danger-hover) !important;
+  color: #ffffff !important;
+}
